@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Crash Dummy Gymnastics</title>
+  <style>
+    @font-face {
+      font-family: 'OutfitRegular';
+      src: url('OutfitRegular.ttf');
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      font-family: 'OutfitRegular', sans-serif;
+      font-weight: 270;
+      height: 100vh;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-bottom: 120px;
+      margin-left: 110px;
+    }
+
+    body::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: #FCFF55;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #FCFF55;
+      font-size: 55pt;
+      line-height: 0.9;
+      margin-top: 10px;
+    }
+
+    .links-container {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 20px;
+      padding: 10px 0;
+      background-color: #000;
+      border: 2px solid white;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 1100px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
+      margin-top: 382px; /* Changed from 515px to 415px */
+    }
+
+    .link-container {
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home-link, .about-link, .training-stunts, .quiz-feedback {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 60;
+      font-size: 12pt;
+      text-decoration: none;
+      color: #FCFF55;
+    }
+
+    .home-link a, .about-link a, .training-stunts a, .quiz-feedback a {
+      text-decoration: none;
+      color: #FCFF55;
+    }
+
+    .home-link:hover a, .about-link:hover a, .training-stunts:hover a, .quiz-feedback:hover a {
+      color: #ffffff;
+    }
+
+    .about-link a {
+      color: #ffffff !important;
+      text-decoration: underline;
+    }
+
+    .image-container {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin-top: 0;
+      z-index: 1;
+    }
+
+    .medals-img {
+      width: 100%;
+      max-width: 1100px;
+      height: auto;
+      display: block;
+      margin-bottom: -60px;
+    }
+
+    .portrait-img {
+      width: 310px;
+      height: auto;
+      display: block;
+      margin-left: -800px;
+      margin-top: 250px; /* Moved the image further down by 100px */
+    }
+
+    .splits-medal {
+      width: 220px;
+      height: auto;
+      display: block;
+      margin-left: -200px;
+      margin-top: -400px;
+    }
+
+    .author-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 60;
+      font-size: 18pt; /* Medium-large size */
+      color: #FCFF55;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="links-container">
+    <div class="link-container">
+      <div class="home-link"><a href="index.html">Home</a></div>
+    </div>
+    <div class="link-container">
+      <div class="training-stunts"><a href="Training Stunts.html">Training Stunts</a></div>
+    </div>
+    <div class="link-container">
+      <div class="quiz-feedback"><a href="quiz-&-feedback.html">Quiz & Feedback</a></div>
+    </div>
+    <div class="link-container">
+      <div class="about-link"><a href="about.html">About</a></div>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <img src="images/all_medals.jpg" alt="All Medals" class="medals-img">
+    <img src="images/Gymnast Portrait.jpg" alt="Gymnast Portrait" class="portrait-img">
+    <img src="images/splits_medal.jpg" alt="Splits Medal" class="splits-medal">
+  </div>
+
+  <div class="author-text">About the author</div> <!-- Text appears underneath the images -->
+
+</body>
+</html>
+
+

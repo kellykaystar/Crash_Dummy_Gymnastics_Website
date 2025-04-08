@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Crash Dummy Gymnastics</title>
+  <style>
+    /* Apply the custom font */
+    @font-face {
+      font-family: 'OutfitRegular';
+      src: url('OutfitRegular.ttf');
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      font-family: 'OutfitRegular', sans-serif;
+      font-weight: 270;
+      height: 100vh; /* Set the height to the viewport height */
+      overflow: hidden; /* Remove scrolling */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Vertically center content */
+      align-items: flex-start;
+      padding-bottom: 120px; /* Added bottom padding to create extra space after the button */
+      margin-left: 110px; /* Move everything to the left by 110px */
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #FCFF55;
+      font-size: 55pt;
+      line-height: 0.9;
+      margin-top: 10px;
+    }
+
+    .subheading {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #000000;
+      font-size: 10pt; /* Made the font size a little smaller */
+      background-color: #000; /* Black background */
+      padding: 10px 20px; /* Increased padding */
+      border: 2px solid #fff; /* White border */
+      border-radius: 10px;
+      display: inline-block;
+      color: #FCFF55; /* Yellow text color */
+    }
+
+    .start-button {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #000000;
+      font-size: 14pt;
+      background-color: #FCFF55; /* Yellow background */
+      padding: 12px 30px; /* Adjusted padding */
+      border-radius: 20px;
+      display: inline-block;
+      text-decoration: none; /* Make it look like a button */
+      border: 2px solid white; /* White outline around the button */
+      margin-bottom: 100px; /* Increased space beneath the "Start" button */
+    }
+
+    .start-button:hover {
+      background-color: #ffffff; /* White background on hover */
+      color: #000000; /* Keep the text color black when hovered */
+      border: 2px solid #FCFF55; /* Yellow outline on hover */
+    }
+
+    p {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 180;
+      color: #fff;
+      font-size: 12pt;
+      line-height: 2;
+      margin-top: 20px; /* Reduced margin-top to move the paragraph up closer to the heading */
+    }
+
+    /* Style for the container behind the links (new added box) */
+    .links-container {
+      display: flex;
+      justify-content: space-evenly; /* Evenly space the links inside the container */
+      gap: 20px; /* Adjust space between the links */
+      padding: 8px 0; /* Padding around the entire container */
+      background-color: #FCFF55; /* Yellow background for the container */
+      border-radius: 10px; /* Rounded corners */
+      margin-top: -10px; /* Adjusted margin-top to move the links box further down */
+      width: 100%; /* Ensure the container takes up full width */
+      max-width: 1100px; /* Increased max-width for wider container */
+      box-sizing: border-box; /* Ensures padding and borders don't affect the overall width */
+    }
+
+    /* Style for each link container */
+    .link-container {
+      padding: 10px 10px; /* Reduced padding to make the box smaller */
+      display: flex;
+      align-items: center; /* Vertically center the link */
+      justify-content: center; /* Horizontally center the link */
+    }
+
+    /* Updated link styles */
+    .home-link a, .about-link a, .training-stunts a, .quiz-feedback a {
+      font-family: 'Outfit', 'Outfitmedium.ttf';
+      font-weight: 60;
+      font-size: 12pt;
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+      color: #000; /* Black text color */
+      padding: 5px 10px; /* Add padding to create a small rectangular highlight */
+      border-radius: 5px; /* Add rounded corners to the highlight */
+    }
+
+    /* Link hover effect */
+    .home-link:hover a, .about-link:hover a, .training-stunts:hover a, .quiz-feedback:hover a {
+      color: #ffffff; /* Change text to white on hover */
+      text-decoration: underline; /* Add underline on hover */
+      background-color: #000; /* Add black background on hover */
+    }
+
+    /* Style for the crash dummy image */
+    .crash-dummy {
+      position: absolute;
+      top: 140px; /* Adjusted top to move the image closer to the text */
+      right: 50px;
+      width: 100px;
+      height: auto;
+      transform-origin: center;
+      transition: transform 0.1s ease;
+    }
+
+    /* Checkered line style */
+    .checkered-line {
+      width: 40%; /* Full width of the screen */
+      margin-top: 20px; /* Space between the horizontal line and the checkered line */
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start; /* Aligns the squares to the left */
+    }
+
+    /* Style for each square in the pattern */
+    .checkered-line div {
+      width: 21px;
+      height: -30px;
+      opacity: 100; /* This makes the checkered pattern invisible */
+    }
+
+    /* Black square style with thinner white outline */
+    .checkered-line .black {
+      background-color: black;
+      border: 1px solid white; /* Thinner white border around the black squares */
+    }
+
+    /* White square style (formerly yellow) */
+    .checkered-line .yellow {
+      background-color: white; /* Changed from yellow to white */
+      border: 1px solid white; /* Default white border around the white squares */
+    }
+
+    /* Add a white outline to the last white square */
+    .checkered-line .yellow:last-of-type {
+      border: 1px solid white; /* White border around the last white square */
+    }
+
+    /* Alternate stacked squares */
+    .stacked {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Content section to adjust space below the checkered line */
+    .content {
+      margin-top: 10px; /* Moves content slightly higher without interfering with the checkered line */
+    }
+
+    /* Move content slightly higher by adjusting the margin-top of the content */
+    .content {
+      margin-top: -20px; /* Moves content closer to the checkered line */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- New container for the links with a white border -->
+  <div class="links-container">
+    <!-- Links section (Home, Training Stunts, Quiz & Feedback, About) -->
+    <div class="link-container">
+      <div class="home-link"><a href="index.html">Home</a></div>
+    </div>
+    <div class="link-container">
+      <div class="training-stunts"><a href="Training Stunts.html">Training Stunts</a></div> <!-- Updated link here -->
+    </div>
+    <div class="link-container">
+      <div class="quiz-feedback"><a href="quiz-&-feedback.html">Quiz & Feedback</a></div> <!-- Updated link to quiz-&-feedback.html -->
+    </div>
+    <div class="link-container">
+      <div class="about-link"><a href="about.html">About</a></div>
+    </div>
+  </div>
+
+  <!-- Extended Checkered line underneath the vertical line -->
+  <div class="checkered-line vertical">
+    <!-- Repeating the checkered squares pattern -->
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+    <div class="stacked">
+      <div class="yellow"></div>
+      <div class="black"></div>
+      <div class="yellow"></div>
+    </div>
+    <div class="stacked">
+      <div class="black"></div>
+      <div class="yellow"></div>
+      <div class="black"></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="width: 50%;">
+        <h3 class="subheading" style="margin-top: 60px;">Crash Dummy Gymnastics</h3>
+        <h1>Welcome,<br> Stunt<br>Master</h1>
+        <p>Are YOU ready to risk it all and impress<br> your friends with the most ridiculous, life-<br>threatening stunts? Press start!</p>
+      </div>
+      <div style="width: 64%; text-align: right; margin-left: -740px;"> 
+        <img src="images/Floating-Dummy-Gif.gif" alt="Floating Dummy GIF" style="width: 127%; height: auto;">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+

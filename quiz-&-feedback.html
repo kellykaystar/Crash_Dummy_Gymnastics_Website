@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Stunt Quiz</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Outfit', sans-serif; /* Set Outfit font globally */
+      background-color: #000; /* Set background to black */
+      color: white; /* Make text inside body white */
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align the content towards the top */
+      height: 100vh;
+      background-color: #000; /* Background black for the whole page */
+      padding-top: 100px; /* Reduced padding to bring the quiz up a bit */
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #1c1c1c; /* Dark background inside the container */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 40px; /* Adjusted margin to move the quiz content further down */
+    }
+
+    h1 {
+      text-align: center;
+      color: white; /* White text for headings */
+      margin-bottom: 30px; /* Increase space between heading and start button */
+      font-weight: 200; /* Make the font thinner */
+    }
+
+    /* Links Section */
+    .links-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 20px;
+      padding: 10px 0;
+      background-color: #000;
+      border: 2px solid white;
+      border-radius: 5px;
+      margin-top: 45px;
+      width: 100%;
+      max-width: 1100px;
+      box-sizing: border-box;
+      margin-left: 110px;
+      margin-right: auto;
+    }
+
+    .link-container {
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home-link, .about-link, .training-stunts, .quiz-feedback {
+      font-family: 'Outfit', 'Outfitmedium.ttf';
+      font-weight: 60;
+      font-size: 12pt;
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+      color: #FCFF55; /* Yellow text */
+    }
+
+    .home-link a, .about-link a, .training-stunts a, .quiz-feedback a {
+      text-decoration: none;
+      color: #FCFF55; /* Yellow text */
+    }
+
+    .home-link:hover a, .about-link:hover a, .training-stunts:hover a, .quiz-feedback:hover a {
+      color: #ffffff; /* Change text to white on hover */
+    }
+
+    /* Specific style for Quiz & Feedback link */
+    .quiz-feedback a {
+      text-decoration: underline; /* Always have the underline */
+      color: #ffffff; /* White text */
+    }
+
+    .quiz-feedback:hover a {
+      color: #ffffff; /* White text */
+      text-decoration: underline; /* Ensure underline stays on hover */
+    }
+
+    /* Quiz Styles */
+    .question {
+      display: none;
+    }
+
+    .question.active {
+      display: block;
+    }
+
+    .answers {
+      list-style-type: none;
+      padding: 0;
+      color: white; /* White text for answers */
+      font-weight: normal; /* Set normal weight for answers */
+      line-height: 1.8; /* Increased line spacing for better readability */
+      font-family: sans-serif; /* Use default font for answers */
+    }
+
+    .answers li {
+      margin: 10px 0;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: normal;
+      color: white; /* Feedback text in white */
+    }
+
+    .correct {
+      color: yellow;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    .navigation-buttons {
+      margin-top: 20px;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .navigation-buttons button {
+      padding: 10px 20px;
+      background-color: #FCFF55; /* Yellow background */
+      color: black; /* Black text */
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif; /* Outfit font */
+      font-weight: normal; /* Default weight for the buttons */
+    }
+
+    .navigation-buttons button:hover {
+      background-color: #e6d000; /* Slightly darker yellow */
+    }
+
+    .progress-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 15px; /* Adjust bottom margin to give space between circles and buttons */
+    }
+
+    .progress-circle {
+      width: 18px; /* Adjusted to match button height */
+      height: 18px; /* Adjusted to match button height */
+      border-radius: 50%;
+      margin: 0 5px; /* Reduced margin to bring circles closer */
+      background-color: #ddd;
+    }
+
+    .progress-circle.filled {
+      background-color: #4CAF50;
+    }
+
+    .progress-circle.incorrect {
+      background-color: red;
+    }
+
+    .progress-circle.active {
+      background-color: #FCFF55; /* Match the yellow color */
+    }
+
+    #startButton {
+      display: block;
+      padding: 10px 20px;
+      background-color: #FCFF55; /* Yellow background */
+      color: black; /* Black text */
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 20px auto;
+      font-family: 'Outfit', sans-serif; /* Outfit font */
+      font-weight: 200; /* Make the font thinner */
+    }
+
+    #startButton:hover {
+      background-color: #e6d000; /* Slightly darker yellow */
+    }
+
+    /* Default font for quiz questions */
+    .question p {
+      font-family: sans-serif; /* Use the default system font for the questions */
+      font-size: 16px; /* Adjust the size as needed */
+      color: white; /* Ensure the text is white */
+      font-weight: normal; /* Regular font weight */
+    }
+
+    .warning-message {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .result-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #1c1c1c;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 100vh;
+    }
+
+    .result-box {
+      padding: 10px;
+      border: 1px solid white;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin: 5px;
+    }
+
+    #tryAgainButton {
+      background-color: #FCFF55;
+      color: black;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #tryAgainButton:hover {
+      background-color: #e6d000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Links and Checkered Pattern -->
+  <div class="links-container">
+    <!-- Links section (Home, Training Stunts, Quiz & Feedback, About) -->
+    <div class="link-container">
+      <div class="home-link"><a href="index.html">Home</a></div>
+    </div>
+    <div class="link-container">
+      <div class="training-stunts"><a href="Training Stunts.html">Training Stunts</a></div> 
+    </div>
+    <div class="link-container">
+      <div class="quiz-feedback"><a href="quiz-&-feedback.html">Quiz & Feedback</a></div> 
+    </div>
+    <div class="link-container">
+      <div class="about-link"><a href="about.html">About</a></div>
+    </div>
+  </div>
+
+  <!-- Quiz Content -->
+  <div class="wrap">
+    <div class="container">
+      <h1 id="quizTitle">Mini Crash Dummy Quiz</h1>
+
+      <button id="startButton" onclick="startQuiz()">Start Quiz</button>
+
+      <form id="quizForm" style="display:none;">
+        <!-- Question 1 -->
+        <div id="question1" class="question active">
+          <p>1. What’s the first step to doing a Hoverboard Handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q1" value="A"> A) Pray to the gods of balance.</li>
+            <li><input type="radio" name="q1" value="B"> B) Find a hoverboard and place it in an open area.</li>
+            <li><input type="radio" name="q1" value="C"> C) Watch a YouTube tutorial and call it a day.</li>
+            <li><input type="radio" name="q1" value="D"> D) Strap yourself in with duct tape for “safety.”</li>
+          </ul>
+          <div class="feedback" id="feedback1"></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div id="question2" class="question">
+          <p>2. What sound does the hoverboard make before you attempt the handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q2" value="A"> A) A heroic theme song, because you’re a legend.</li>
+            <li><input type="radio" name="q2" value="B"> B) A beep that basically translates to “bad idea detected.”</li>
+            <li><input type="radio" name="q2" value="C"> C) The distant cries of concerned bystanders.</li>
+            <li><input type="radio" name="q2" value="D"> D) Nothing, because you forgot to turn it on.</li>
+          </ul>
+          <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div id="question3" class="question">
+          <p>3. What’s the risk of attempting a hoverboard handstand without safety gear?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q3" value="A"> A) You'll fall and regret it for the rest of your life.</li>
+            <li><input type="radio" name="q3" value="B"> B) It’s totally safe. Just go for it!</li>
+            <li><input type="radio" name="q3" value="C"> C) You might injure yourself, but that's part of the fun.</li>
+            <li><input type="radio" name="q3" value="D"> D) You’ll probably be fine—unless you fall off a cliff.</li>
+          </ul>
+          <div class="feedback" id="feedback3"></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div id="question4" class="question">
+          <p>4. What's the best way to practice before attempting a hoverboard handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q4" value="A"> A) Start with balancing on one foot.</li>
+            <li><input type="radio" name="q4" value="B"> B) Do some stretches to avoid injury.</li>
+            <li><input type="radio" name="q4" value="C"> C) Practice on a regular skateboard first.</li>
+            <li><input type="radio" name="q4" value="D"> D) Just try it without any practice—you’re a pro!</li>
+          </ul>
+          <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div id="question5" class="question">
+          <p>5. What’s a common mistake people make when attempting a hoverboard handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q5" value="A"> A) Not wearing a helmet.</li>
+            <li><input type="radio" name="q5" value="B"> B) Trying it without enough practice.</li>
+            <li><input type="radio" name="q5" value="C"> C) Getting distracted by their phone.</li>
+            <li><input type="radio" name="q5" value="D"> D) Forgetting to turn on the hoverboard.</li>
+          </ul>
+          <div class="feedback" id="feedback5"></div>
+        </div>
+
+        <!-- Question 6 -->
+        <div id="question6" class="question">
+          <p>6. How important is it to have someone spot you when practicing a hoverboard handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q6" value="A"> A) Very important! You need help when you inevitably fall.</li>
+            <li><input type="radio" name="q6" value="B"> B) Not necessary, you’ve got it covered.</li>
+            <li><input type="radio" name="q6" value="C"> C) Only needed if you’re scared of falling.</li>
+            <li><input type="radio" name="q6" value="D"> D) It’s all part of the fun, falling is part of the process.</li>
+          </ul>
+          <div class="feedback" id="feedback6"></div>
+        </div>
+
+        <!-- Question 7 -->
+        <div id="question7" class="question">
+          <p>7. What gear should you wear for safety when attempting the hoverboard handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q7" value="A"> A) A helmet and elbow pads are enough.</li>
+            <li><input type="radio" name="q7" value="B"> B) Just a helmet.</li>
+            <li><input type="radio" name="q7" value="C"> C) Complete body armor, just to be safe.</li>
+            <li><input type="radio" name="q7" value="D"> D) Nothing, because you’re invincible!</li>
+          </ul>
+          <div class="feedback" id="feedback7"></div>
+        </div>
+
+        <!-- Question 8 -->
+        <div id="question8" class="question">
+          <p>8. What is a key factor in staying balanced on the hoverboard?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q8" value="A"> A) Lean forward slightly.</li>
+            <li><input type="radio" name="q8" value="B"> B) Keep your back straight and your eyes on the horizon.</li>
+            <li><input type="radio" name="q8" value="C"> C) Avoid looking at your feet.</li>
+            <li><input type="radio" name="q8" value="D"> D) Look at your feet and try to stabilize.</li>
+          </ul>
+          <div class="feedback" id="feedback8"></div>
+        </div>
+
+        <!-- Question 9 -->
+        <div id="question9" class="question">
+          <p>9. When is the best time to try a hoverboard handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q9" value="A"> A) Right after learning to stand on the hoverboard.</li>
+            <li><input type="radio" name="q9" value="B"> B) Once you’ve mastered a basic ride.</li>
+            <li><input type="radio" name="q9" value="C"> C) After you’ve watched a few tutorials.</li>
+            <li><input type="radio" name="q9" value="D"> D) When you’re feeling extra confident.</li>
+          </ul>
+          <div class="feedback" id="feedback9"></div>
+        </div>
+
+        <!-- Question 10 -->
+        <div id="question10" class="question">
+          <p>10. What is the best method to prepare after a failed attempt at a hoverboard handstand?</p>
+          <ul class="answers">
+            <li><input type="radio" name="q10" value="A"> A) Try again immediately!</li>
+            <li><input type="radio" name="q10" value="B"> B) Take a break and stretch to recover.</li>
+            <li><input type="radio" name="q10" value="C"> C) Consult a chiropractor.</li>
+            <li><input type="radio" name="q10" value="D"> D) Watch funny YouTube videos for motivation.</li>
+          </ul>
+          <div class="feedback" id="feedback10"></div>
+        </div>
+
+        <!-- Progress Bar and Navigation -->
+        <div class="navigation-buttons">
+          <button type="button" id="nextButton" onclick="nextQuestion()">Next</button>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+          <!-- Progress circles will be inserted here -->
+        </div>
+
+        <div class="warning-message" id="warningMessage" style="display: none;">Woah, where you going? Answer the question first!</div>
+
+        <div class="result-container" id="resultContainer" style="display: none; margin-top: 10px;">
+          <div class="result-box" id="scoreBox" style="margin-top: 10px;"></div>
+          <div class="result-box" id="percentageBox" style="margin-top: 10px;"></div>
+          <button type="button" id="tryAgainButton" onclick="tryAgain()" style="margin-top: 20px;">Try Again</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 0;
+    const totalQuestions = 10;
+    const progressContainer = document.getElementById('progressContainer');
+    const warningMessage = document.getElementById('warningMessage');
+    const resultContainer = document.getElementById('resultContainer');
+    const scoreBox = document.getElementById('scoreBox');
+    const percentageBox = document.getElementById('percentageBox');
+    const tryAgainButton = document.getElementById('tryAgainButton');
+    let correctAnswers = 0;
+
+    // Create progress circles dynamically based on number of questions
+    for (let i = 0; i < totalQuestions; i++) {
+      const circle = document.createElement('div');
+      circle.classList.add('progress-circle');
+      progressContainer.appendChild(circle);
+    }
+
+    const progressCircles = document.querySelectorAll('.progress-circle');
+
+    function showQuestion(index) {
+      const questions = document.querySelectorAll('.question');
+      questions.forEach((q, i) => {
+        q.classList.remove('active');
+      });
+
+      if (index >= 0 && index < totalQuestions) {
+        questions[index].classList.add('active');
+      }
+    }
+
+    function updateProgress() {
+      progressCircles.forEach((circle, index) => {
+        if (index < currentQuestion) {
+          circle.classList.add('filled');
+        } else if (index === currentQuestion) {
+          circle.classList.add('active');
+        } else {
+          circle.classList.remove('filled');
+          circle.classList.remove('active');
+        }
+      });
+    }
+
+    function nextQuestion() {
+      const currentQuestionElement = document.querySelectorAll('.question')[currentQuestion];
+      const radioButtons = currentQuestionElement.querySelectorAll('input[type="radio"]');
+      let answerSelected = false;
+
+      radioButtons.forEach((radioButton) => {
+        if (radioButton.checked) {
+          answerSelected = true;
+        }
+      });
+
+      if (answerSelected) {
+        warningMessage.style.display = 'none';
+        const feedbackElement = currentQuestionElement.querySelector('.feedback');
+        const correctAnswer = getCorrectAnswer(currentQuestion);
+        const userAnswer = getUserAnswer(currentQuestion);
+
+        if (userAnswer === correctAnswer) {
+          feedbackElement.textContent = 'Correct!';
+          feedbackElement.classList.add('correct');
+          correctAnswers++;
+          setTimeout(() => {
+            feedbackElement.textContent = '';
+            feedbackElement.classList.remove('correct');
+          }, 2000);
+        } else {
+          feedbackElement.textContent = `Incorrect, the correct answer is '${correctAnswer}'`;
+          feedbackElement.classList.add('incorrect');
+          progressCircles[currentQuestion].classList.add('incorrect');
+          setTimeout(() => {
+            feedbackElement.textContent = '';
+            feedbackElement.classList.remove('incorrect');
+          }, 2000);
+        }
+
+        if (currentQuestion < totalQuestions - 1) {
+          setTimeout(() => {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            updateProgress();
+            if (currentQuestion === totalQuestions - 1) {
+              document.getElementById('nextButton').textContent = 'Submit';
+            }
+          }, 2000);
+        } else {
+          calculateScore();
+        }
+      } else {
+        warningMessage.style.display = 'block';
+      }
+    }
+
+    function startQuiz() {
+      document.getElementById('startButton').style.display = 'none';
+      document.getElementById('quizForm').style.display = 'block';
+      showQuestion(currentQuestion);
+      updateProgress();
+    }
+
+    function calculateScore() {
+      const percentage = (correctAnswers / totalQuestions) * 100;
+      scoreBox.textContent = `Score: ${correctAnswers} / ${totalQuestions}`;
+      percentageBox.textContent = `Percentage: ${percentage.toFixed(2)}%`;
+      resultContainer.style.display = 'flex';
+      document.getElementById('nextButton').style.display = 'none';
+      document.getElementById('question10').style.display = 'none';
+      document.getElementById('progressContainer').style.display = 'none';
+      document.getElementById('quizTitle').textContent = 'Results';
+    }
+
+    function tryAgain() {
+      correctAnswers = 0;
+      currentQuestion = 0;
+      resultContainer.style.display = 'none';
+      document.getElementById('nextButton').style.display = 'block';
+      document.getElementById('nextButton').textContent = 'Next';
+      document.getElementById('question10').style.display = 'block';
+      document.getElementById('progressContainer').style.display = 'block';
+      document.getElementById('quizTitle').textContent = 'Mini Crash Dummy Quiz';
+      showQuestion(currentQuestion);
+      updateProgress();
+      const questions = document.querySelectorAll('.question');
+      questions.forEach((q) => {
+        const radioButtons = q.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach((radioButton) => {
+          radioButton.checked = false;
+        });
+        const feedbackElement = q.querySelector('.feedback');
+        feedbackElement.textContent = '';
+        feedbackElement.classList.remove('correct');
+        feedbackElement.classList.remove('incorrect');
+      });
+      progressCircles.forEach((circle) => {
+        circle.classList.remove('incorrect');
+        circle.classList.remove('filled');
+        circle.classList.remove('active');
+      });
+      document.getElementById('startButton').style.display = 'block';
+      document.getElementById('quizForm').style.display = 'none';
+    }
+
+    function getCorrectAnswer(questionIndex) {
+      switch (questionIndex) {
+        case 0:
+          return 'B';
+        case 1:
+          return 'B';
+        case 2:
+          return 'A';
+        case 3:
+          return 'C';
+        case 4:
+          return 'B';
+        case 5:
+          return 'A';
+        case 6:
+          return 'C';
+        case 7:
+          return 'B';
+        case 8:
+          return 'B';
+        case 9:
+          return 'B';
+        default:
+          return '';
+      }
+    }
+
+    function getUserAnswer(questionIndex) {
+      const currentQuestionElement = document.querySelectorAll('.question')[questionIndex];
+      const radioButtons = currentQuestionElement.querySelectorAll('input[type="radio"]');
+      let userAnswer = '';
+
+      radioButtons.forEach((radioButton) => {
+        if (radioButton.checked) {
+          userAnswer = radioButton.value;
+        }
+      });
+
+      return userAnswer;
+    }
+  </script>
+</body>
+</html>
+
