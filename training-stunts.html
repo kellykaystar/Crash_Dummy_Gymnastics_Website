@@ -23,18 +23,27 @@
       overflow: hidden; /* Remove scrolling */
       display: flex;
       flex-direction: column;
+      justify-content: flex-start; /* Align content to the top */
+      align-items: flex-start; /* Align content to the left */
+      padding-bottom: 120px; /* Padding at the bottom */
       justify-content: center; /* Vertically center content */
       align-items: flex-start;
       padding-bottom: 120px; /* Added bottom padding to create extra space after the button */
       margin-left: 110px; /* Move everything to the left by 110px */
+      margin-top: -10px; /* Move the entire content up slightly */
     }
 
     h1 {
       font-family: 'Outfit', sans-serif;
       font-weight: 400;
       color: #FCFF55;
+      font-size: 5vw; /* Reduced text size */
       font-size: 55pt;
       line-height: 0.9;
+      text-align: center; /* Center the text horizontally */
+      margin-top: 5px; /* Adjusted margin-top to move the heading slightly lower */
+      margin-bottom: 10px; /* Reduced bottom margin to bring the text closer */
+      margin-left: -120px; /* Shift the text further left */
       margin-top: 10px;
     }
 
@@ -84,6 +93,12 @@
     .links-container {
       display: flex;
       justify-content: space-evenly; /* Evenly space the links inside the container */
+      gap: 20px; /* Adjust gap to make the links just a tiny bit closer together */
+      padding: 10px 0; /* Padding around the entire container */
+      background-color: #000; /* Black background for the box */
+      border: 2px solid white; /* White outline around the container */
+      border-radius: 5px;
+      margin-top: 55.1px; /* Adjusted margin-top to move the links box higher */
       gap: 20px; /* Adjust space between the links */
       padding: 8px 0; /* Padding around the entire container */
       background-color: #FCFF55; /* Yellow background for the container */
@@ -92,16 +107,20 @@
       width: 100%; /* Ensure the container takes up full width */
       max-width: 1100px; /* Increased max-width for wider container */
       box-sizing: border-box; /* Ensures padding and borders don't affect the overall width */
-    }
+
 
     /* Style for each link container */
     .link-container {
+      padding: 10px 15px; /* Reduced padding to make the box smaller */
       padding: 10px 10px; /* Reduced padding to make the box smaller */
       display: flex;
       align-items: center; /* Vertically center the link */
       justify-content: center; /* Horizontally center the link */
+      flex-shrink: 0; /* Prevent shrinking */
     }
 
+    .home-link, .about-link, .quiz-feedback, .training-stunts {
+      font-family: 'Outfit', sans-serif;
     /* Updated link styles */
     .home-link a, .about-link a, .training-stunts a, .quiz-feedback a {
       font-family: 'Outfit', 'Outfitmedium.ttf';
@@ -110,11 +129,28 @@
       display: inline-block;
       position: relative;
       text-decoration: none;
+      color: #FCFF55; /* Yellow text */
       color: #000; /* Black text color */
       padding: 5px 10px; /* Add padding to create a small rectangular highlight */
       border-radius: 5px; /* Add rounded corners to the highlight */
     }
 
+    /* Remove the underlines from the links */
+    .home-link a, .about-link a, .quiz-feedback a, .training-stunts a {
+      text-decoration: none;
+      color: #FCFF55; /* Yellow text */
+    }
+
+    /* Style for "Training Stunts" link: white text with mini underline */
+    .training-stunts a {
+      color: white; /* White text color */
+      text-decoration: none; /* Remove underline */
+      border-bottom: 2px solid white; /* Add a mini underline */
+      padding-bottom: 2px; /* Adjust spacing for the underline */
+    }
+
+    /* Link hover effect removed for "Training Stunts" */
+    .home-link:hover a, .about-link:hover a, .quiz-feedback:hover a {
     /* Link hover effect */
     .home-link:hover a, .about-link:hover a, .training-stunts:hover a, .quiz-feedback:hover a {
       color: #ffffff; /* Change text to white on hover */
@@ -123,78 +159,116 @@
     }
 
     /* Style for the crash dummy image */
-    .crash-dummy {
-      position: absolute;
-      top: 140px; /* Adjusted top to move the image closer to the text */
-      right: 50px;
-      width: 100px;
-      height: auto;
-      transform-origin: center;
-      transition: transform 0.1s ease;
-    }
+
+
 
     /* Checkered line style */
     .checkered-line {
+      width: 100%; /* Full width of the screen */
+      margin-top: 17px; /* Space between the horizontal line and the checkered line */
       width: 40%; /* Full width of the screen */
       margin-top: 20px; /* Space between the horizontal line and the checkered line */
       display: flex;
       flex-wrap: nowrap;
+      justify-content: center; /* Center the checkered line horizontally */
+      opacity: 0%; /* Set opacity to 0% to make it invisible */
       justify-content: flex-start; /* Aligns the squares to the left */
     }
 
     /* Style for each square in the pattern */
     .checkered-line div {
       width: 21px;
+      height: 20px;
       height: 40px;
       opacity: 100; /* This makes the checkered pattern invisible */
     }
 
     /* Black square style with thinner white outline */
-    .checkered-line .black {
-      background-color: black;
-      border: 1px solid white; /* Thinner white border around the black squares */
-    }
 
-    /* White square style (formerly yellow) */
-    .checkered-line .yellow {
-      background-color: white; /* Changed from yellow to white */
-      border: 1px solid white; /* Default white border around the white squares */
-    }
 
-    /* Add a white outline to the last white square */
-    .checkered-line .yellow:last-of-type {
-      border: 1px solid white; /* White border around the last white square */
-    }
-
-    /* Alternate stacked squares */
-    .stacked {
-      display: flex;
-      flex-direction: column;
-    }
 
     /* Content section to adjust space below the checkered line */
     .content {
+      display: flex;
+      justify-content: center; /* Center the content horizontally */
+      width: 100%; /* Make sure it takes up the full width */
+      flex-grow: 1; /* Allow the content to grow */
+      flex-direction: column; /* Ensure content is stacked vertically */
+      align-items: center; /* Center items horizontally */
+    }
+
+    /* Styling for the image under "Choose a skill" */
+    .image-container {
+      display: flex;
+      justify-content: flex-start; /* Align the images to the left */
+      width: 100%;
+      margin-top: 10px; /* Reduced space between images and text to move them up */
+      margin-left: -100px; /* Move images slightly more to the left */
+    }
+
+    .image-holder {
+      width: 95%; /* Even bigger image size (now 95% width of the container) */
+      height: auto; /* Maintain aspect ratio */
+      margin-left: 10px; /* Adjust the left margin slightly for spacing */
+    }
+
+    /* Style for text under each image */
+    .text-underneath {
+      text-align: left; /* Align the text to the left */
+      color: #ffffff; /* Change text color to white */
+      font-size: 1.5vw;
+      margin-top: 5px;
+      margin-left: 10px;
+      width: 105%; /* Increase width by 5% to make the text a little wider */
+      line-height: 1.3; /* Tighter line spacing */
       margin-top: 10px; /* Moves content slightly higher without interfering with the checkered line */
     }
 
+    /* Style for the Start Button */
+    .start-button {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #000000;
+      font-size: 12pt; /* Increased font size for readability */
+      background-color: #FCFF55; /* Yellow background */
+      padding: 12px 35px; /* Increased padding to make the button longer */
+      border-radius: 20px;
+      display: inline-block;
+      text-decoration: none; /* Make it look like a button */
+      border: none; /* Removed white outline around the button */
+      margin-top: 17px; /* Increased margin-top to lower the button */
+      margin-left: 2px; /* Move the button to the right */
+      width: auto; /* Ensures button width adjusts with content */
+      transition: background-color 0.3s, color 0.3s, border 0.3s; /* Smooth transition for color and border */
+    }
+
+    /* Hover effect - button turns white with black text when hovered */
+    .start-button:hover {
+      background-color: white; /* White background */
+      color: #000000; /* Black text */
+      border: none; /* No border on hover */
     /* Move content slightly higher by adjusting the margin-top of the content */
     .content {
       margin-top: -20px; /* Moves content closer to the checkered line */
     }
   </style>
 </head>
-<body>
+
 
   <!-- New container for the links with a white border -->
   <div class="links-container">
+    <!-- Links section (Home, Training Stunts, Quiz & Feedback, About) -->
     <!-- Links section (Home, training-stunts.html, Quiz & Feedback, About) -->
     <div class="link-container">
+      <div class="home-link"><a href="index.html">Home</a></div>
       <div class="home-link"><a href="hoverboard-handstand.html">Home</a></div>
     </div>
     <div class="link-container">
+      <div class="training-stunts"><a href="Training Stunts.html">Training Stunts</a></div>
       <div class="training-stunts"><a href="training-stunts.html">Training stunts</a></div> 
     </div>
     <div class="link-container">
+      <div class="quiz-feedback"><a href="quiz-&-feedback.html">Quiz & Feedback</a></div>
       <div class="quiz-feedback"><a href="quiz-&-feedback.html">Quiz & Feedback</a></div> 
     </div>
     <div class="link-container">
@@ -202,6 +276,22 @@
     </div>
   </div>
 
+  <div class="content">
+    <h1>Choose a skill</h1> <!-- Updated text -->
+
+    <!-- Container to hold all 4 images evenly -->
+    <div class="image-container">
+      <div>
+        <img src="images/image-replacer.jpg" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Hoverboard<br>Handstand</h1> <!-- Text under the first image -->
+        <a href="/hoverboard-handstand.html" class="start-button">Start</a> <!-- Start button linking to buttons/hoverboard-handstand.html -->
+      </div>
+
+      <div>
+        <img src="images/image-replacer.jpg" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Aerial<br>(No handed Cartwheel)</h1> <!-- Text under the second image -->
+        <a href="/z-aerial.html" class="start-button">Start</a> <!-- Updated link -->
+      </div>
   <!-- Extended Checkered line underneath the vertical line -->
   <div class="checkered-line vertical">
     <!-- Repeating the checkered squares pattern -->
@@ -277,17 +367,9 @@
     </div>
   </div>
 
+      <div>
+        <img src="images/image-replacer.jpg" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Handstand<br>(No handed)</h1> <!-- Text under the third image -->
+        <a href="/zz-handstand-no-handed.html" class="start-button">Start</a> <!-- Updated link -->
   <div class="content">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <div style="width: 50%;">
-        <h3 class="subheading" style="margin-top: 60px;">Crash Dummy Gymnastics</h3>
-        <h1>Welcome,<br> Stunt<br>Master</h1>
-        <p>Are YOU ready to risk it all and impress<br> your friends with the most ridiculous, life-<br>threatening stunts? Press start!</p>
-      </div>
-      <div style="width: 64%; text-align: right; margin-left: -740px;"> 
-        <img src="images/Floating-Dummy-Gif.gif" alt="Floating Dummy GIF" style="width: 127%; height: auto;">
-      </div>
-    </div>
-  </div>
-</body>
-</html>
