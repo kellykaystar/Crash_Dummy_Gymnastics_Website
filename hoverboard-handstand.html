@@ -24,9 +24,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: flex-start;
+      align-items: center; /* Center the content */
       padding-bottom: 120px;
-      margin-left: 110px;
       margin-top: -10px;
     }
 
@@ -39,31 +38,29 @@
       text-align: center;
       margin-top: 100px;
       margin-bottom: 10px;
-      margin-left: -120px;
     }
 
     /* Style for the container behind the links */
     .links-container {
       display: flex;
-      justify-content: space-evenly;
-      gap: 20px;
-      padding: 10px 0;
-      background-color: #000;
-      border: 2px solid white;
-      border-radius: 5px;
-      margin-top: 54.8px;
-      width: 100%;
-      max-width: 1100px;
-      box-sizing: border-box;
+      justify-content: center; /* Center the navigation links */
+      gap: 55px;
+      padding: 15px 0; /* Increased padding for more height */
+      background-color: #FCFF55;
+      border-radius: 10px;
+      margin-top: 60px; /* Moved navigation links lower */
+      width: 90%;
+      margin: 50px auto;
+      height: 45px; /* Increased height for the links */
+      align-items: center;
     }
 
     /* Style for each link container */
     .link-container {
-      padding: 10px 15px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
     }
 
     .home-link, .about-link, .quiz-feedback, .training-stunts {
@@ -73,19 +70,24 @@
       display: inline-block;
       position: relative;
       text-decoration: none;
-      color: #FCFF55;
+      color: #000;
+      width: 65%;
+      top-margin: 30%;
+      text-align: center;
+      transition: box-shadow 0.2s ease-in-out;
     }
 
     .home-link a, .about-link a, .quiz-feedback a, .training-stunts a {
       text-decoration: none;
-      color: #FCFF55;
+      color: #000;
     }
 
-    .training-stunts a {
-      color: white;
-      text-decoration: none;
-      border-bottom: 2px solid white;
-      padding-bottom: 2px;
+    .home-link a:hover, .about-link a:hover, .quiz-feedback a:hover, .training-stunts a:hover {
+      background-color: #000;
+      color: #fff;
+      text-decoration: underline;
+      box-shadow: 0 0 0 8px #000 inset;
+      border-radius: 5px;
     }
 
     .crash-dummy {
@@ -95,14 +97,10 @@
     }
 
     .image-container {
-      margin-top: 330px; /* Increased margin-top value */
+      margin-top: 330px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-    }
-
-    .image-container:first-of-type {
-      margin-top: 330px; /* Adjusted margin-top value */
     }
 
     .pain-o-meter {
@@ -112,9 +110,9 @@
       font-size: 3.0vw;
       line-height: 0.9;
       text-align: center;
-      margin-bottom: 20px; /* Increased margin-bottom to give more space between the Pain-O-Meter and images */
-      margin-left: -100px; /* Moved it closer horizontally */
-      margin-top: 170px; /* Adjusted to move it further up */
+      margin-bottom: 20px;
+      margin-left: -100px;
+      margin-top: 170px;
     }
 
     .how-bad {
@@ -122,13 +120,13 @@
       font-weight: 200;
       color: #FCFF55;
       margin-left: -105px;
-      font-size: 1.5vw; /* Made it smaller */
+      font-size: 1.5vw;
       line-height: 0.9;
       text-align: center;
-      margin-top: 10px; /* Added margin-top to give space between Pain-O-Meter and How bad will this hurt? */
-      width: 100%; /* Center align by occupying full width */
+      margin-top: 10px;
+      width: 100%;
       display: flex;
-      justify-content: center; /* Center horizontally */
+      justify-content: center;
     }
 
     .step-1 {
@@ -137,29 +135,20 @@
       font-size: 27pt;
       color: #FCFF55;
       margin: 20px;
-      margin-top: -40px; /* Adjusted margin-top value */
+      margin-top: -40px;
       align-self: center;
     }
 
     .step-1-description {
-      font-family: sans-serif; /* Use default browser font */
-      font-weight: normal; /* Regular weight */
+      font-family: sans-serif;
+      font-weight: normal;
       font-size: 13pt;
       color: white;
       margin: 20px;
-      margin-top: 30px; /* Adjusted margin-top value */
+      margin-top: 30px;
       align-self: center;
       text-align: left;
       line-height: 1.8;
-    }
-
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 400;
-      color: #FFFFFFF;
-      font-size: 45pt;
-      line-height: 0.9;
-      margin-top: 140px;
     }
 
     .checkered-line {
@@ -221,77 +210,84 @@
       background-color: #fff;
     }
 
-    /* Zoom effect CSS */
     .zoom-image {
-      transform: scale(0.8); /* Start smaller than the original size */
-      transition: transform 0.5s ease-out; /* Increased duration for smoother transition */
-      width: 450px; /* Make sure it has a fixed width to scale properly */
+      transform: scale(0.8);
+      transition: transform 0.5s ease-out;
+      width: 450px;
       height: auto;
       margin: 20px;
     }
 
-    /* Customize the scrollbar */
     ::-webkit-scrollbar {
-      width: 12px; /* Adjust the width of the scrollbar */
+      width: 12px;
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: #FCFF55; /* Set the color of the scrollbar thumb (the part you drag) */
-      border-radius: 10px; /* Optional: rounded edges for the scrollbar thumb */
+      background-color: #FCFF55;
+      border-radius: 10px;
     }
 
     ::-webkit-scrollbar-track {
-      background-color: #000; /* Set the background color of the scrollbar track */
-      border-radius: 10px; /* Optional: rounded edges for the scrollbar track */
+      background-color: #000;
+      border-radius: 10px;
     }
 
-    /* Aggressive shake effect */
     @keyframes shake {
       0% {
         transform: translateX(0);
       }
       25% {
-        transform: translateX(-10px); /* Increased displacement */
+        transform: translateX(-10px);
       }
       50% {
-        transform: translateX(10px); /* Increased displacement */
+        transform: translateX(10px);
       }
       75% {
-        transform: translateX(-5px); /* Slightly reduced displacement */
+        transform: translateX(-5px);
       }
       100% {
-        transform: translateX(5px); /* Slightly reduced displacement */
+        transform: translateX(5px);
       }
     }
 
     .shake-gif {
-      animation: shake 0.3s ease-in-out infinite; /* Reduced duration for more noticeable shake */
+      animation: shake 0.3s ease-in-out infinite;
     }
 
+    /* Move < button down */
+    .back-button {
+      position: fixed;
+      top: 60px; /* Adjusted to move it down */
+      left: 20px;
+      background: none;
+      color: #FCFF55;
+      font-size: 30px;
+      font-weight: bold;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
   <div class="links-container">
     <div class="link-container">
-      <div class="home-link"><a href="../index.html">Home</a></div>
+      <div class="home-link"><a href="index.html">Home</a></div>
     </div>
     <div class="link-container">
-      <div class="training-stunts">
-        <a href="../Training Stunts.html">Training Stunts</a>
-      </div>
+      <div class="training-stunts"><a href="training-stunts.html">Training Stunts</a></div>
     </div>
     <div class="link-container">
-      <div class="quiz-feedback"><a href="../quiz-&-feedback.html">Quiz & Feedback</a></div>
+      <div class="quiz-feedback"><a href="quiz-&-feedback.html">Quiz & Feedback</a></div>
     </div>
     <div class="link-container">
-      <div class="about-link"><a href="../about.html">About</a></div>
+      <div class="about-link"><a href="about.html">About</a></div>
     </div>
   </div>
 
-  <button
-    style="background: none; color: #FCFF55; font-size: 30px; font-weight: bold; border: none; padding: 0; cursor: pointer; margin-top: 50px;"
-    onclick="history.back()">
+  <!-- Move < button down -->
+  <button class="back-button" onclick="history.back()">
     &lt;
   </button>
 
@@ -301,11 +297,9 @@
     <!-- First section -->
     <div class="image-container">
       <p class="pain-o-meter">Pain-O-Meter</p>
-      <!-- New text added here -->
       <p class="how-bad">How bad will this hurt?</p>
       <div style="display: flex; align-items: center;">
         <img src="../images/image-replacer2.jpg" alt="image-replacer2" class="zoom-image">
-        <!-- Updated the GIF here -->
         <img src="../images/zzz-nohandedstand.gif" alt="Yikes Hoverboard Handstand" class="shake-gif" style="width: 260px; height: auto; margin: 20px;">
       </div>
     </div>
@@ -317,7 +311,7 @@
         <div style="margin: 20px;">
           <div class="step-1">Step 1</div>
           <div class="step-1-description">
-            Find an open space near a wall where you probablywon’t crash into<br>furniture, or innocent bystanders.
+            Find an open space near a wall where you probably won’t crash into furniture, or innocent bystanders.
           </div>
         </div>
       </div>
@@ -329,7 +323,7 @@
         <div style="margin: 20px;">
           <div class="step-1">Step 2</div>
           <div class="step-1-description">
-            Stand tall like you actually know what you’re doing. Feet together,<br> confidence high.
+            Stand tall like you actually know what you’re doing. Feet together, confidence high.
           </div>
         </div>
       </div>
@@ -341,7 +335,7 @@
         <div style="margin: 20px;">
           <div class="step-1">Step 3</div>
           <div class="step-1-description">
-            Kick one leg up behind you like you’re trying to launch yourself and<br> simultaneously, push off with your other leg.
+            Kick one leg up behind you like you’re trying to launch yourself and simultaneously, push off with your other leg.
           </div>
         </div>
       </div>
@@ -350,67 +344,10 @@
     <div class="image-container">
       <div style="display: flex; align-items: center;">
         <img src="../images/image-replacer2.jpg" alt="image-replacer2" class="zoom-image">
-        <div style="margin: 20px;">
-          <div class="step-1">Step 4</div>
-          <div class="step-1-description">
-            Okay, now lift your hands. You don’t need them. Just let them vibe somewhere else while your body figures things out mid-air.
-          </div>
-        </div>
       </div>
     </div>
-
-    <div class="image-container">
-      <div style="display: flex; align-items: center;">
-        <img src="../images/image-replacer2.jpg" alt="image-replacer2" class="zoom-image">
-        <div style="margin: 20px;">
-          <div class="step-1">Step 5</div>
-          <div class="step-1-description">
-           If all goes well, your feet should find the ground again. 
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <div class="image-container">
-      <div style="display: flex; align-items: center;">
-        <img src="../images/image-replacer2.jpg" alt="image-replacer2" class="zoom-image">
-        <div style="margin: 20px;">
-          <div class="step-1">Step 6</div>
-          <div class="step-1-description">
-            Strike a victory pose. Chest up, chin high—like you just stuck the greatest trick of all time.  
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="height: 100px;"></div> <!-- Added space at the bottom -->
 
   </div>
-
-  <button class="back-to-top" onclick="window.scrollTo(0, 0)">Back to Top</button>
-
-  <script>
-    const zoomImages = document.querySelectorAll('.zoom-image');
-
-    window.addEventListener('scroll', () => {
-      zoomImages.forEach(image => {
-        let scrollY = window.scrollY;
-        let imageOffsetTop = image.getBoundingClientRect().top;
-
-        // Scale effect triggered when the image enters the viewport
-        if (imageOffsetTop < window.innerHeight && imageOffsetTop > 0) {
-          let scaleValue = 0.8 + (scrollY / window.innerHeight) * 0.3; // Slow down zoom-out transition
-          scaleValue = Math.min(scaleValue, 1); // Prevent going beyond original size (1)
-          
-          image.style.transform = `scale(${scaleValue})`;
-        } else {
-          // Reset the image to the default scale if it's not in view
-          image.style.transform = 'scale(0.8)';
-        }
-      });
-    });
-  </script>
-
 </body>
 </html>
 
