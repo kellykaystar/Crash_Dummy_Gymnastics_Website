@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Crash Dummy Gymnastics</title>
   <style>
     @font-face {
       font-family: 'OutfitRegular';
       src: url('OutfitRegular.ttf');
+    }
+
+    html {
+      overflow-y: scroll;
     }
 
     body {
@@ -18,27 +22,21 @@
       padding: 0;
       font-family: 'OutfitRegular', sans-serif;
       font-weight: 270;
-      height: 100vh;
-      overflow-y: scroll;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding-bottom: 120px;
-      margin-left: 110px;
     }
 
     body::-webkit-scrollbar {
-      width: 10px;
+      width: 0px;
+      background: transparent;
     }
 
-    body::-webkit-scrollbar-track {
-      background: #000;
-    }
-
-    body::-webkit-scrollbar-thumb {
-      background-color: #FCFF55;
-      border-radius: 10px;
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     h1 {
@@ -50,49 +48,56 @@
       margin-top: 10px;
     }
 
+    /* ✅ NAVIGATION BAR STYLE */
     .links-container {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
+      align-items: center;
       gap: 20px;
-      padding: 10px 0;
-      background-color: #000;
-      border: 2px solid white;
-      border-radius: 5px;
-      width: 100%;
-      max-width: 1100px;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 2;
-      margin-top: 382px; /* Changed from 515px to 415px */
+      padding: 9px 45px;
+      background-color: #FCFF55;
+      border-radius: 10px;
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 83%;
+      height: 52px;
+      z-index: 999;
     }
 
     .link-container {
-      padding: 10px 15px;
+      padding: 6px 18px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex: 1;
+      text-align: center;
     }
 
-    .home-link, .about-link, .training-stunts, .quiz-feedback {
+    .home-link a,
+    .about-link a,
+    .training-stunts a,
+    .quiz-feedback a {
+      text-decoration: none;
+      color: #000;
       font-family: 'Outfit', sans-serif;
-      font-weight: 60;
       font-size: 12pt;
-      text-decoration: none;
-      color: #FCFF55;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      transition: box-shadow 0.2s ease-in-out;
     }
 
-    .home-link a, .about-link a, .training-stunts a, .quiz-feedback a {
-      text-decoration: none;
-      color: #FCFF55;
-    }
-
-    .home-link:hover a, .about-link:hover a, .training-stunts:hover a, .quiz-feedback:hover a {
-      color: #ffffff;
-    }
-
-    .about-link a {
-      color: #ffffff !important;
+    .home-link a:hover,
+    .about-link a:hover,
+    .training-stunts a:hover,
+    .quiz-feedback a:hover {
+      background-color: #000;
+      color: #fff;
       text-decoration: underline;
+      box-shadow: 0 0 0 8px #000 inset;
+      border-radius: 5px;
     }
 
     .image-container {
@@ -102,16 +107,17 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      margin-top: 0;
+      margin-top: 100px;
       z-index: 1;
     }
 
     .medals-img {
-      width: 100%;
-      max-width: 1100px;
-      height: auto;
+      width: 140%;
+      max-width: 1120px;
+      margin-top: 70px;
       display: block;
       margin-bottom: -60px;
+      margin-left: -50px;
     }
 
     .portrait-img {
@@ -119,7 +125,7 @@
       height: auto;
       display: block;
       margin-left: -800px;
-      margin-top: 250px; /* Moved the image further down by 100px */
+      margin-top: 120px;
     }
 
     .splits-medal {
@@ -127,21 +133,114 @@
       height: auto;
       display: block;
       margin-left: -200px;
-      margin-top: -400px;
+      margin-top: -430px;
     }
 
     .author-text {
       font-family: 'Outfit', sans-serif;
       font-weight: 60;
-      font-size: 18pt; /* Medium-large size */
+      font-size: 18pt;
       color: #FCFF55;
-      text-align: center;
-      margin-top: 20px;
+      position: absolute;
+      left: 730px;
+      top: 700px;
+      white-space: nowrap;
+    }
+
+    .author-bio {
+      position: absolute;
+      top: 770px;
+      left: 730px;
+      width: 420px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    /* 📱 Mobile Responsive */
+    @media screen and (max-width: 768px) {
+      body {
+        margin-left: 0;
+        padding: 20px;
+        align-items: center;
+      }
+
+      .links-container {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+        padding: 12px;
+        width: 90%;
+        top: 20px;
+      }
+
+      .link-container {
+        flex: none;
+        width: 100%;
+        padding: 0;
+      }
+
+      .home-link a,
+      .about-link a,
+      .training-stunts a,
+      .quiz-feedback a {
+        font-size: 14pt;
+        padding: 12px 0;
+        background-color: #FCFF55;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+      }
+
+      .home-link a:hover,
+      .about-link a:hover,
+      .training-stunts a:hover,
+      .quiz-feedback a:hover {
+        background-color: #000;
+        color: #fff;
+        text-decoration: underline;
+        box-shadow: 0 0 0 6px #000 inset;
+      }
+
+      .image-container {
+        margin-top: 180px;
+        align-items: center;
+      }
+
+      .medals-img {
+        width: 100%;
+        margin: 20px 0;
+        margin-left: 0;
+      }
+
+      .portrait-img {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 80%;
+      }
+
+      .splits-medal {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 70%;
+      }
+
+      .author-text,
+      .author-bio {
+        position: static;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .author-bio {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- ✅ NAVIGATION BAR -->
   <div class="links-container">
     <div class="link-container">
       <div class="home-link"><a href="index.html">Home</a></div>
@@ -157,15 +256,20 @@
     </div>
   </div>
 
+  <!-- Main Content -->
   <div class="image-container">
     <img src="images/all_medals.jpg" alt="All Medals" class="medals-img">
     <img src="images/Gymnast Portrait.jpg" alt="Gymnast Portrait" class="portrait-img">
     <img src="images/splits_medal.jpg" alt="Splits Medal" class="splits-medal">
   </div>
 
-  <div class="author-text">About the author</div> <!-- Text appears underneath the images -->
+  <div class="author-text">About the author</div>
+
+  <div class="author-bio">
+    Hello! I’m Kelly N. I’m from a small town in southern Michigan, U.S.A. I started gymnastics at the young age of 5 and immediately fell in love with the sport the minute I took my first gymnastics class.<br><br>
+    I became a state champion at the age of 10. I took gymnastics very seriously. With my website, I wanted to approach my love for gymnastics in a more unserious tone and poke fun at what it's like to learn new skills for the first time.
+  </div>
 
 </body>
 </html>
-
 

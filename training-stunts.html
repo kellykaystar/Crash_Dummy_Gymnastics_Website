@@ -15,51 +15,53 @@
 
     .links-container {
       display: flex;
-      justify-content: space-evenly;
-      gap: px;
-      padding: 10px 0; /* decreased padding */
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 9px 45px;
       background-color: #FCFF55;
       border-radius: 10px;
-      margin-top: 50px;
-      width: 90%; /* increased width */
-      margin: 50px auto; /* centered */
-      height: 50px; /* decreased height */
-      display: flex;
-      align-items: center;
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 83%;
+      height: 52px;
+      z-index: 999;
     }
 
     .link-container {
-      padding: 5px 20px; /* decreased padding */
+      padding: 6px 18px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex: 1;
+      text-align: center;
     }
 
-    /* Adjusted links */
-    .training-stunts {
-      margin-right: 23px; /* moved closer to Home */
-    }
-
-    .quiz-feedback {
-      margin-left: 9px; /* moved closer to About */
-    }
-
-    .home-link a, .about-link a, .quiz-feedback a, .training-stunts a {
+    .home-link a,
+    .about-link a,
+    .training-stunts a,
+    .quiz-feedback a {
       text-decoration: none;
       color: #000;
-      font-family: 'Outfit', sans-serif; /* added font family */
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
       display: inline-block;
       width: 100%;
       text-align: center;
       transition: box-shadow 0.2s ease-in-out;
     }
 
-    .home-link a:hover, .about-link a:hover, .quiz-feedback a:hover, .training-stunts a:hover {
-      background-color: #000; /* added hover background color */
-      color: #fff; /* added hover text color */
-      text-decoration: underline; /* added hover underline */
-      box-shadow: 0 0 0 8px #000 inset; /* added box shadow to hover effect */
-      border-radius: 5px; /* added rounded edges to hover effect */
+    .home-link a:hover,
+    .about-link a:hover,
+    .training-stunts a:hover,
+    .quiz-feedback a:hover {
+      background-color: #000;
+      color: #fff;
+      text-decoration: underline;
+      box-shadow: 0 0 0 8px #000 inset;
+      border-radius: 5px;
     }
 
     .start-button {
@@ -86,12 +88,12 @@
       gap: 10px;
       padding: 10px;
       margin-bottom: 30px;
-      margin-top: 40px; /* moved everything up */
+      margin-top: 90px; /* same */
       justify-items: center;
     }
 
     .grid-item {
-      text-align: left; /* changed to left */
+      text-align: left;
       padding: 0;
       max-width: 250px;
     }
@@ -99,34 +101,26 @@
     .image-holder {
       max-width: 100%;
       height: auto;
-      max-height: 250px; /* reduced image size */
+      max-height: 250px;
       margin: 0;
     }
 
     .text-underneath {
-      text-align: left; /* changed to left */
+      text-align: left;
       color: #ffffff;
-      font-size: 14pt; /* reduced font size */
+      font-size: 14pt;
       margin-top: 5px;
     }
 
     @media (max-width: 800px) {
       .grid-container {
-        display: grid;
         grid-template-columns: auto auto;
-        gap: 10px;
-        padding: 10px;
-        justify-items: center;
       }
     }
 
     @media (max-width: 600px) {
       .grid-container {
-        display: grid;
         grid-template-columns: auto;
-        gap: 10px;
-        padding: 10px;
-        justify-items: center;
       }
     }
   </style>
@@ -150,34 +144,37 @@
   </div>
   <!-- Nav bar ends -->
 
-  <h1 style="text-align: center; font-size: 36pt;">Choose a skill</h1>
+  <div style="margin-top: 160px;"> <!-- moved slightly up from 170px -->
+    <h1 style="text-align: center; font-size: 36pt;">Choose a skill</h1>
 
-  <div class="grid-container">
-    <div class="grid-item">
-      <img src="images/image-replacer.jpg" alt="image-replacer" class="image-holder">
-      <h1 class="text-underneath">Hoverboard Handstand</h1>
-      <a href="hoverboard-handstand.html" class="start-button">Start</a>
-    </div>
+    <div class="grid-container">
+      <div class="grid-item">
+        <img src="images/handstand-hoverboad-final.gif" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Hoverboard Handstand</h1>
+        <a href="hoverboard-handstand.html" class="start-button">Start</a>
+      </div>
 
-    <div class="grid-item">
-      <img src="images/aerial-gif.gif" alt="image-replacer" class="image-holder">
-      <h1 class="text-underneath">Aerial (Handless Cartwheel)</h1>
-      <a href="z-aerial.html" class="start-button">Start</a>
-    </div>
+      <div class="grid-item">
+        <img src="images/aerial-gif.gif" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Aerial</h1>
+        <a href="z-aerial.html" class="start-button">Start</a>
+      </div>
 
-    <div class="grid-item">
-      <img src="images/no-handed-handstand.gif" alt="image-replacer" class="image-holder">
-      <h1 class="text-underneath">Handstand (No handed)</h1>
-      <a href="zz-handstand-no-handed.html" class="start-button">Start</a>
-    </div>
+      <div class="grid-item">
+        <img src="images/no-handed-handstand.gif" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Handstand (No handed)</h1>
+        <a href="zz-handstand-no-handed.html" class="start-button">Start</a>
+      </div>
 
-    <div class="grid-item">
-      <img src="images/backtuck-gif.gif" alt="image-replacer" class="image-holder">
-      <h1 class="text-underneath">Backflip</h1>
-      <a href="zzz-backtuck.html" class="start-button">Start</a>
+      <div class="grid-item">
+        <img src="images/backtuck-gif.gif" alt="image-replacer" class="image-holder">
+        <h1 class="text-underneath">Backflip</h1>
+        <a href="zzz-backtuck.html" class="start-button">Start</a>
+      </div>
     </div>
   </div>
 </body>
 </html>
+
 
 
